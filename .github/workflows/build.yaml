@@ -53,8 +53,8 @@ jobs:
             <servers>
               <server>
                 <id>octopus-sales-public-snapshot</id>
-                <username>${{ inputs.aws_access_key }}</username>
-                <password>${{ inputs.aws_secret_access_key }}</password>
+                <username>${{ secrets.AWS_ACCESS_KEY_ID }}</username>
+                <password>${{ secrets.AWS_SECRET_ACCESS_KEY }}</password>
                 <configuration>
                   <region>ap-southeast-2</region>
                   <publicRepository>true</publicRepository>
@@ -62,8 +62,8 @@ jobs:
               </server>
               <server>
                 <id>octopus-sales-public-release</id>
-                <username>${{ inputs.aws_access_key }}</username>
-                <password>${{ inputs.aws_secret_access_key }}</password>
+                <username>${{ secrets.AWS_ACCESS_KEY_ID }}</username>
+                <password>${{ secrets.AWS_SECRET_ACCESS_KEY }}</password>
                 <configuration>
                   <region>ap-southeast-2</region>
                   <publicRepository>true</publicRepository>

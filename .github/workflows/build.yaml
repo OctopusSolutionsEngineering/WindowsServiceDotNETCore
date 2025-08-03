@@ -78,10 +78,10 @@ jobs:
         run: dotnet restore
 
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build --configuration Release --no-restore --runtime win-x64
 
       - name: Publish
-        run: dotnet publish --configuration Release --output ./publish
+        run: dotnet publish --configuration Release --output ./publish --runtime win-x64
           
       - name: Build and push static web package
         run: |

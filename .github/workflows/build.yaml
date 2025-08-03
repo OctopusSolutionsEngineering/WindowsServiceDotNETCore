@@ -1,4 +1,3 @@
-
 name: Build and Publish .NET Core App
 
 on:

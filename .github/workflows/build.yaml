@@ -31,6 +31,19 @@ jobs:
         if: ${{ steps.branch-name.outputs.current_branch == 'main' }}
         run: echo "PACKAGE_VERSION=$(date +'%Y%m%d').${{ github.run_number }}.${{ github.run_attempt }}" >> $GITHUB_ENV
         shell: bash
+        
+      - name: Install maven-repository-aws-s3 dependencies
+        run: |
+          HOME=$(dirname $(readlink -f $(which mvn)))
+          for dep in "com.github.ehsaniara:maven-repository-aws-s3:1.2.11:jar" "org.apache.httpcomponents:httpcore:4.4.16:jar" "com.amazonaws:aws-java-sdk-s3:1.12.405:jar" "com.amazonaws:aws-java-sdk-core:1.12.405:jar" "com.fasterxml.jackson.core:jackson-core:2.14.2:jar" "com.fasterxml.jackson.core:jackson-databind:2.14.2:jar" "com.fasterxml.jackson.core:jackson-annotations:2.14.2:jar" "joda-time:joda-time:2.12.2:jar" "org.apache.httpcomponents:httpclient:4.5.14:jar" "commons-io:commons-io:2.12.0"
+          do
+             mvn dependency:copy \
+              --batch-mode \
+              -DrepoUrl=https://repo.maven.apache.org/maven2 \
+              -Dartifact=${dep} \
+              -DoutputDirectory=${HOME}/../lib
+          done
+        shell: bash
           
       - name: Configure maven-repository-aws-s3
         run: |

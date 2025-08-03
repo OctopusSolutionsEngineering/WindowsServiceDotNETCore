@@ -34,6 +34,7 @@ jobs:
           
       - name: Configure maven-repository-aws-s3
         run: |
+          mkdir -p ~/.m2
           cat <<EOT > ~/.m2/settings.xml
           <settings>
             <servers>
